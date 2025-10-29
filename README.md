@@ -44,7 +44,88 @@ npm run dev
 
 The server will run on `http://localhost:3000`
 
-## Deployment on Hetzner Ubuntu 22
+## Deployment Options
+
+### Option 1: Docker Deployment with Portainer (Recommended)
+
+Since you have Portainer on your server, this is the easiest way to deploy!
+
+#### Method A: Using Docker Compose Stack in Portainer
+
+1. **Access Portainer**:
+   - Open your Portainer web interface (usually `http://your-server-ip:9000`)
+
+2. **Create a Stack**:
+   - Go to **Stacks** → **Add stack**
+   - Name it: `landing-page-demo`
+   - Select **Web editor** tab
+   - Copy and paste the contents of `docker-compose.yml` from this repository
+   - Click **Deploy the stack**
+
+3. **Access your application**:
+   - Visit `http://your-server-ip:3000`
+
+#### Method B: Using Git Repository in Portainer
+
+1. **Access Portainer**:
+   - Go to **Stacks** → **Add stack**
+
+2. **Configure Repository**:
+   - Name: `landing-page-demo`
+   - Select **Repository** tab
+   - Repository URL: `https://github.com/YOUR_USERNAME/landing-page-demo.git`
+   - Repository reference: `main` (or `master`)
+   - Compose path: `docker-compose.yml`
+   - Click **Deploy the stack**
+
+3. **Access your application**:
+   - Visit `http://your-server-ip:3000`
+
+#### Method C: Building from Dockerfile in Portainer
+
+1. **Clone repository on your server**:
+   ```bash
+   git clone <your-repo-url>
+   cd landing-page-demo
+   ```
+
+2. **In Portainer**:
+   - Go to **Containers** → **Add container**
+   - Name: `landing-page-demo`
+   - Image: Build from Dockerfile
+   - Click **Build the image**
+   - Build method: **Upload**
+   - Upload the project folder (or use git repository option)
+   - Dockerfile path: `Dockerfile`
+   - Build options: Keep defaults
+   - Click **Build the image**
+
+3. **Configure Port**:
+   - Port mappings: `3000:3000`
+   - Restart policy: `Unless stopped`
+   - Click **Deploy the container**
+
+4. **Access your application**:
+   - Visit `http://your-server-ip:3000`
+
+### Option 2: Direct Docker Deployment (via SSH)
+
+If you prefer command line:
+
+```bash
+# Clone repository
+git clone <your-repo-url>
+cd landing-page-demo
+
+# Build and run with Docker Compose
+docker-compose up -d
+
+# Or build and run manually
+docker build -t landing-page-demo .
+docker run -d -p 3000:3000 --name landing-page-demo --restart unless-stopped landing-page-demo
+```
+
+### Option 3: PM2 Deployment (Traditional)
 
 ### 1. Connect to your server:
 ```bash
@@ -101,6 +182,9 @@ Visit `http://your-server-ip:3000`
 .
 ├── server.js          # Express server
 ├── package.json       # Dependencies
+├── Dockerfile        # Docker image definition
+├── docker-compose.yml # Docker Compose configuration
+├── .dockerignore     # Docker ignore rules
 ├── public/
 │   ├── index.html    # Landing page
 │   ├── styles.css    # Styles
