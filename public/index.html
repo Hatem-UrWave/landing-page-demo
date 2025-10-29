@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Demo Project</div>
+            <nav>
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#stats">Stats</a>
+                <a href="#activity">Activity</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Welcome to Our Demo Project</h1>
+                <p class="subtitle">Practice deployment on Hetzner Ubuntu 22 Server</p>
+                <button class="cta-button" onclick="loadData()">Load Live Data</button>
+            </div>
+        </section>
+
+        <section id="stats" class="stats-section">
+            <div class="container">
+                <h2>Platform Statistics</h2>
+                <div class="stats-grid" id="statsGrid">
+                    <!-- Stats will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2>Key Features</h2>
+                <div class="features-grid" id="featuresGrid">
+                    <!-- Features will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <section id="activity" class="activity-section">
+            <div class="container">
+                <h2>Recent Activity</h2>
+                <div class="activity-list" id="activityList">
+                    <!-- Activity will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Demo Project. Built for Hetzner Server Practice.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
