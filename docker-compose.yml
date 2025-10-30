@@ -5,8 +5,6 @@ services:
       context: .  # Builds from the current directory (includes Dockerfile)
       dockerfile: Dockerfile
     image: landing-page-demo  # Optional: Name for the built image
-    ports:
-      - "3000:3000"  # Expose the app on port 3000
     restart: unless-stopped
     ports:
       - "3001:3000"
